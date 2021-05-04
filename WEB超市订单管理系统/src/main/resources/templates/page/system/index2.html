@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>demo</title>
+		<link rel="stylesheet" href="../../assets/libs/layui/css/layui.css" />
+		<link rel="stylesheet" href="../../assets/module/admin.css?v=315" />
+		<title></title>
+		<style>
+			/** 文章列表样式 */
+			
+			.article-list-item {
+				border-bottom: 1px solid #e8e8e8;
+				margin-top: 16px;
+			}
+			
+			.article-list-item>h2 {
+				font-size: 18px;
+				color: #333;
+				margin-bottom: 12px;
+			}
+			
+			.article-list-item .layui-badge-list .layui-badge {
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+			
+			.article-list-item .article-list-item-text {
+				margin-bottom: 12px;
+			}
+			
+			.article-list-item .article-list-item-desc {
+				margin-bottom: 12px;
+			}
+			
+			.article-list-item .article-list-item-desc .head {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+			}
+			
+			.article-list-item .article-list-item-desc>* {
+				vertical-align: middle;
+			}
+			
+			.article-list-item .article-list-item-tool {
+				color: #666;
+				margin-bottom: 5px;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item {
+				border-right: 1px solid #e8e8e8;
+				padding: 0 15px;
+				cursor: pointer;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item:first-child {
+				padding-left: 0;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item:last-child {
+				border-right: none;
+				padding-right: 0;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item>* {
+				vertical-align: middle;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item.star-active {
+				color: #01AAED;
+			}
+			
+			.article-list-item .article-list-item-tool .article-list-item-tool-item.star-active .layui-icon-rate:before {
+				content: "\e67a";
+			}
+			/** // 文章列表样式结束 */
+			/** 项目列表样式 */
+			
+			.project-list-item {
+				background-color: #fff;
+				border: 1px solid #e8e8e8;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: all .2s;
+			}
+			
+			.project-list-item:hover {
+				box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+			}
+			
+			.project-list-item .project-list-item-cover {
+				width: 100%;
+				height: 220px;
+				display: block;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+			
+			.project-list-item-body {
+				padding: 20px;
+			}
+			
+			.project-list-item .project-list-item-body>h2 {
+				font-size: 18px;
+				color: #333;
+				margin-bottom: 12px;
+			}
+			
+			.project-list-item .project-list-item-text {
+				height: 44px;
+				overflow: hidden;
+				margin-bottom: 12px;
+			}
+			
+			.project-list-item .project-list-item-desc {
+				position: relative;
+			}
+			
+			.project-list-item .project-list-item-desc .time {
+				color: #999;
+				font-size: 12px;
+			}
+			
+			.project-list-item .project-list-item-desc .ew-head-list {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			
+			.ew-head-list .ew-head-list-item {
+				width: 22px;
+				height: 22px;
+				border-radius: 50%;
+				border: 1px solid #fff;
+				margin-left: -10px;
+			}
+			
+			.ew-head-list .ew-head-list-item:first-child {
+				margin-left: 0;
+			}
+			/** // 项目列表样式结束 */
+			/** 应用列表样式 */
+			
+			.application-list-item {
+				background-color: #fff;
+				border: 1px solid #e8e8e8;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: all .2s;
+			}
+			
+			.application-list-item:hover {
+				box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+			}
+			
+			.application-list-item .application-list-item-header {
+				padding: 16px 12px 0 12px;
+			}
+			
+			.application-list-item .application-list-item-header .head {
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				margin-right: 10px;
+			}
+			
+			.application-list-item .application-list-item-header>h2 {
+				color: #333;
+				font-size: 18px;
+				display: inline-block;
+			}
+			
+			.application-list-item .application-list-item-body {
+				padding: 12px 12px 12px 50px;
+				font-size: 0;
+			}
+			
+			.application-list-item .application-list-item-body .text-num-item {
+				display: inline-block;
+				width: 50%;
+				font-size: 26px;
+				color: #666;
+			}
+			
+			.application-list-item .application-list-item-body .text-num-item .text-num-item-title {
+				font-size: 12px;
+				color: #999;
+				margin-bottom: 10px;
+			}
+			
+			.application-list-item .application-list-item-body .text-num-item small {
+				font-size: 16px;
+			}
+			
+			.application-list-item .application-list-item-tool {
+				font-size: 0;
+				background-color: #FAFAFA;
+				border-top: 1px solid #e8e8e8;
+				padding: 10px 0 5px 0;
+				border-bottom-left-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			
+			.application-list-item .application-list-item-tool .application-list-item-tool-item {
+				display: inline-block;
+				width: 25%;
+				font-size: 18px;
+				text-align: center;
+				color: #999;
+				border-right: 1px solid #e8e8e8;
+				box-sizing: border-box;
+				cursor: pointer;
+			}
+			
+			.application-list-item .application-list-item-tool .application-list-item-tool-item:last-child {
+				border-right: none;
+			}
+			/** // 应用列表样式结束 */
+		</style>
+	</head>
+
+	<body>
+		<!-- 页面加载loading -->
+		<div class="page-loading">
+			<div class="ball-loader">
+				<span></span><span></span><span></span><span></span>
+			</div>
+		</div>
+
+		<!-- 正文开始 -->
+		<div class="layui-fluid">
+
+			<div class="layui-card" style="text-align:center;">
+				<ul class="layui-nav">
+					<li class="layui-nav-item">
+						<a href="/reader/index">首&nbsp;页 </a>
+					</li>
+					<li class="layui-nav-item layui-this">
+						<a href="/reader/research">搜&nbsp;索</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="/reader/return">退&nbsp;书</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+						<dl class="layui-nav-child">
+							<dd lay-unselect>
+								<a href="javascript:;" ew-event="reset_reader">修改密码 </a>
+							</dd>
+							<dd lay-unselect>
+								<a href="javascript:;" id="borrow">借书记录</a>
+							</dd>
+							<dd lay-unselect>
+								<a href="/reader/login">退出</a>
+							</dd>
+						</dl>
+					</li>
+				</ul>
+				<div class="layui-card-body">
+					<div class="layui-form toolbar">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">书&emsp;名：</label>
+								<div class="layui-input-block">
+									<input name="name" class="layui-input" type="text" placeholder="输入书名" />
+								</div>
+							</div>
+							<div class="layui-inline" style="padding-right: 110px;">
+								<button class="layui-btn icon-btn" lay-filter="formSubSearchUser" lay-submit>
+                            <i class="layui-icon">&#xe615;</i>搜索
+                       		</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-row">
+					<div class="layui-col-xs2">
+						<div class="grid-demo grid-demo-bg1">&nbsp;</div>
+					</div>
+					<div class="layui-col-xs8">
+						<div class="layui-tab-item layui-show" style="padding-top: 25px;">
+							<div class="layui-row layui-col-space30" id="demoGrid2"></div>
+						</div>
+					</div>
+
+					<div class="layui-col-xs2">
+						<div class="grid-demo grid-demo-bg1">&nbsp;</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 项目模板 -->
+		<script type="text/html" id="demoGridItem2">
+			<div class="layui-col-md3">
+				<a href="/detail?bookid= {{d.id}} ">
+				<div class="project-list-item" style="height: 346px">
+					<img class="project-list-item-cover" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3681950254,3119525576&fm=26&gp=0.jpg" />
+					<div class="project-list-item-body">
+						<h2>{{d.name}}</h2>
+						<div class="project-list-item-desc">
+							总共：{{d.count}}本;评分：{{d.rating}}分
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+			<input type="hidden" th:value="${session.reader.id}"  id="reader_id">
+		</script>
+		<!-- js部分 -->
+		<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+		<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+		<script>
+			layui.use(['layer', 'form', 'dataGrid', 'carousel', 'table', 'util', 'admin', 'element', 'tableX'], function() {
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				var form = layui.form;
+				var table = layui.table;
+				var dataGrid = layui.dataGrid;
+				var tableX = layui.tableX;
+				$('#borrow').click(function () {
+					layer.open({
+						type: 1,
+						title: false,
+						area: '530px',
+						offset: '100px',
+						shade: .01,
+						shadeClose: true,
+						fixed: false,
+						content: '<table id="lookSSXMTable" lay-filter="lookSSXMTable"></table>',
+						success: function () {
+							tableX.render({
+								elem: '#lookSSXMTable',
+								url: '/api/findRecordByReaderId?id='+ $('#reader_id').val(),
+								page: true,
+								cellMinWidth: 100,
+								cols: [
+									[
+										{type: 'numbers'},
+										{field: 'book_name', title: '书名', sort: true},
+										{field: 'borrow_time', title: '借书时间', sort: true},
+										{field: 'return_time', title: '还书时间', sort: true}
+									]
+								],
+								size: ''
+							});
+						}
+					});
+				})
+				// 搜索
+				form.on('submit(formSubSearchUser)', function(data) {
+					$.get('/api/findBook', {
+						name: data.field.name,
+						page:1,
+						limit:1000
+					}, function(res) {
+						dataGrid.render({
+							elem: '#demoGrid2', // 容器
+							templet: '#demoGridItem2', // 模板
+							data: res.data, // url
+							page: {
+								limit: 8,
+								limits: [8, 16, 24, 32, 40]
+							}, // 开启分页
+							onItemClick: function(obj) { // item事件
+								var index = obj.index + 1;
+								layer.msg('点击了第' + index + '个', {
+									icon: 1
+								});
+							}
+						});
+					}, 'json');
+				});
+				// 项目
+				$.get('/api/getAllBooks',{'page':1,'limit':1000}, function(res) {
+					dataGrid.render({
+						elem: '#demoGrid2', // 容器
+						templet: '#demoGridItem2', // 模板
+						data: res.data, // url
+						page: {
+							limit: 8,
+							limits: [8, 16, 24, 32, 40]
+						}, // 开启分页
+						onItemClick: function(obj) { // item事件
+							var index = obj.index + 1;
+							layer.msg('点击了第' + index + '个', {
+								icon: 1
+							});
+						}
+					});
+				}, 'json');
+			});
+		</script>
+	</body>
+
+</html>

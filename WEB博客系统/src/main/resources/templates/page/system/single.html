@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/libs/layui/css/layui.css"/>
+	<link rel="stylesheet" href="/assets/module/admin.css?v=315"/>
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="/css/bootstrap.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<style type="text/css">
+		.comment_list {
+			padding-top:40px;
+			width:900px;
+			margin:0 auto;
+		}
+		.comment_details {
+			float:left;
+		}
+		.comment_content {
+			margin-top:10px;
+			font-size:16px;
+		}
+		.comment_add_or_last {
+
+			margin:0 auto;
+			clear: both;
+			width:600px;
+			height:40px;
+			background: #F0F0F0;
+			text-align: center;
+			line-height: 40px;   //行高（与div保持同高，垂直居中写法）
+		}
+		.imgdiv{
+			float:left;
+
+		}
+		.imgcss {
+			width:50px;
+			height:50px;
+			border-radius: 50%;
+		}
+		.comment_name {
+			margin-left:10px;
+			color:#3D9EEA;
+			font-size:15px;
+			font-weight: bolder;
+		}
+		.layui-icon {
+			font-size: 10px;
+			color: grey;
+		}
+		.del {
+			margin-left: 55px;
+		}
+	</style>
+
+	<!-- Modernizr JS -->
+	<script src="/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="/js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+	<body class="single">
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+		<div id="fh5co-aside" style="background-image: url(/images/image_2.jpg);height: 450px;" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<nav role="navigation">
+				<ul>
+					<li><a href="/system/blog"><i class="icon-home"></i></a></li>
+				</ul>
+			</nav>
+			<div class="page-title">
+				<img src="/images/person_1.jpg" alt="Free HTML5 by ">
+				<span>[[${#strings.substring(blog.create_time,0,16)}]]</span>
+				<h2>[[${blog.title}]]</h2><p>[[${blog.cata.name}]]</p>
+			</div>
+		</div>
+
+		<div id="fh5co-main-content">
+			<div class="fh5co-post"> 
+				<div style="padding: 50px" id="content">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="comment_list">
+		<h2 >全部评论</h2>
+		<hr>
+		<div class="comment" th:if="${not #lists.isEmpty(commentList)}" th:each="comment : ${commentList}">
+			<div class="imgdiv"><img class="imgcss"  src="/images/project-8.jpg"/></div>
+			<div class="conmment_details">
+				<span class="comment_name">[[${comment.nick}]] </span>
+				<span style="padding-left: 50px">[[${#strings.substring(comment.create_time,0,16)}]]</span>
+				<span style="padding-left: 50px">[[${comment.email}]]</span>
+				<div class="comment_content" >  [[${comment.comment}]]</div>
+			</div>
+			<hr>
+		</div>
+		<div class="comment" th:if="${#lists.isEmpty(commentList)}">
+			<div class="conmment_details">
+				<div class="comment_content" > 暂无评论</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+	<div class="layui-collapse" style="width: 900px;margin:0 auto;">
+		<div class="layui-colla-item">
+			<h2 class="layui-colla-title">发表评论</h2>
+			<div class="layui-colla-content layui">
+				<form class="layui-form" style="width: 900px;margin:0 auto;" action="">
+					<input name="b_id" th:value="${id}" type="hidden"/>
+					<div class="layui-form-item">
+						<label class="layui-form-label">昵称</label>
+						<div class="layui-input-inline">
+							<input type="text" name="nick" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">邮箱</label>
+						<div class="layui-input-inline">
+							<input type="text" name="email" required lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">评论</label>
+						<div class="layui-input-inline" style="width: 600px">
+							<input type="text" name="comment" required  lay-verify="required" placeholder="请输入评论" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!--	<fieldset class="layui-elem-field layui-field-title" style="width: 900px;margin:0 auto;">-->
+<!--		<legend>发表评论</legend>-->
+<!--	</fieldset>-->
+
+	<footer>
+		<div>
+					Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://www.freemoban.com/">www.freemoban.com</a> Designed by <a href="http://" target="_blank"></a> Demo Images: <a href="http://unsplash.com" target="_blank">Unsplash</a>
+					</div>
+				</footer>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	<script type="text/javascript" th:inline="javascript">
+		var a = [[${blog.content}]];
+		console.log(a)
+		document.getElementById('content').innerHTML=a;
+	</script>
+	<!-- jQuery -->
+	<script src="/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="/js/jquery.waypoints.min.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="/js/jquery.stellar.min.js"></script>
+	<!-- Main -->
+	<script src="/js/main.js"></script>
+	<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+	<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+	<script>
+		layui.use(['layer', 'form', 'table', 'util', 'admin','element','laydate'], function () {
+					var $ = layui.jquery;
+					var layer = layui.layer;
+					var form = layui.form;
+					var util = layui.util;
+					var element = layui.element;
+			//监听提交
+			form.on('submit(formDemo)', function(data){
+				//layer.msg(JSON.stringify(data.field));
+				$.ajax({
+					url:'/api/addComment',
+					type:"POST",
+					data:JSON.stringify(data.field),
+					contentType:"application/json; charset=utf-8",
+					dataType:"json",
+					success: function(res){
+						layer.closeAll('loading');
+						if (res.code == 200) {
+							layer.msg(res.msg, {icon: 1, time:1000});
+							setTimeout(function(){ window.location.reload(); }, 1000)
+						} else {
+							layer.msg("错误", {icon: 2});
+						}
+					}
+				})
+				return false;
+
+			});
+				})
+	</script>
+		</body>
+</html>
+

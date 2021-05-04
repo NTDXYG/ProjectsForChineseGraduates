@@ -1,0 +1,37 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 2,
+  "data": [
+    {
+      "experimentTypeId": 32,
+      "experimentTypeName": "数字电子实验课",
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50"
+    },
+    {
+      "experimentTypeId": 31,
+      "experimentTypeName": "模拟电子实验课",
+      "createTime": "2019/09/03 10:05:04",
+      "updateTime": "2019/09/03 10:05:04"
+    },
+    {
+      "experimentTypeId": 32,
+      "experimentTypeName": "xxx实验课",
+      "createTime": "2019/09/03 10:05:04",
+      "updateTime": "2019/09/03 10:05:04"
+    },
+    {
+      "experimentTypeId": 33,
+      "experimentTypeName": "xxx实验课",
+      "createTime": "2019/09/03 10:05:04",
+      "updateTime": "2019/09/03 10:05:04"
+    },
+    {
+      "experimentTypeId": 34,
+      "experimentTypeName": "xxx实验课",
+      "createTime": "2019/09/03 10:05:04",
+      "updateTime": "2019/09/03 10:05:04"
+    }
+  ]
+}

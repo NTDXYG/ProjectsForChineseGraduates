@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>URL检测</title>
+		<link rel="stylesheet" href="../../assets/libs/layui/css/layui.css" />
+		<link rel="stylesheet" href="../../assets/module/admin.css?v=315" />
+		<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		<style>
+			.layui-form-item {
+				margin-bottom: 25px;
+			}
+			
+			label .layui-icon {
+				font-size: 14px;
+				color: #666;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- 加载动画 -->
+		<div class="page-loading">
+			<div class="ball-loader">
+				<span></span><span></span><span></span><span></span>
+			</div>
+		</div>
+
+		<!-- 正文开始 -->
+		<div class="layui-fluid">
+			<!-- 统计图表 -->
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+					<div class="layui-card">
+						<div class="layui-card-header">文件上传</div>
+						<div class="layui-upload-drag" style="left: 40%;" id="test_upload">
+							<i class="layui-icon"></i>
+							<p>点击上传，或将文件拖拽到此处</p>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
+					<div class="layui-card">
+						<div class="layui-card-header">分析详情</div>
+						<div class="layui-card-body">
+							<table class="layui-table" id="tableUser" lay-filter="tableUser"></table>
+						</div>
+					</div>
+				</div>
+
+				<div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
+					<div class="layui-card">
+						<div class="layui-card-header">分析可视化</div>
+						<div class="layui-card-body">
+							<div id="ksh" style="height: 325px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- js部分 -->
+		<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+		<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+		<script src="../../assets/libs/echarts/echarts.min.js"></script>
+		<script src="../../assets/libs/echarts/echartsTheme.js"></script>
+		<script>
+			layui.use(['layer', 'form', 'table', 'upload', 'laydate'], function() {
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				var form = layui.form;
+				var laydate = layui.laydate;
+				var table = layui.table;
+				var upload = layui.upload;
+				var path = '';
+				var myCharts = echarts.init(document.getElementById('ksh'), myEchartsTheme);
+				// 渲染表格
+				var insTb = table.render({
+					elem: '#tableUser',
+					url: 'http://127.0.0.1:5000/data1',
+					height: 'full-300',
+					page: false,
+					limit: 10000,
+					where: {
+						'path': path
+					},
+					toolbar: true,
+					cellMinWidth: 100,
+					cols: [
+						[{
+								type: 'numbers',
+								title: '#'
+							},
+							{
+								field: 'content',
+								sort: true,
+								title: '内容'
+							},
+							{
+								field: 'result',
+								sort: true,
+								title: '结果',
+								width: 200
+							}
+						]
+					]
+				});
+				upload.render({ //允许上传的文件后缀
+					elem: '#test_upload',
+					url: 'http://127.0.0.1:5000/upload',
+					field: 'myfile',
+					accept: 'file', //普通文件		
+					exts: 'txt', //只允许上传txt文件	
+					before: function(obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+						layer.load(); //上传loading
+					},
+					done: function(res) {
+						layer.closeAll('loading');
+						layer.msg('上传成功');
+						console.log(res)
+						path = res.path
+						insTb.reload({
+							where: {
+								'path': path
+							}
+						});
+						$.ajax({
+							type: 'GET',
+							url: 'http://127.0.0.1:5000/ksh',
+							data: {
+								'path': path
+							},
+							success: function(result) {
+								var option = {
+									tooltip: {
+										trigger: 'item',
+										formatter: '{a} <br/>{b} : {c} ({d}%)'
+									},
+									legend: {
+										orient: 'vertical',
+										left: 'left',
+										data: ['有效评论', '垃圾评论']
+									},
+									series: [{
+										name: '评论比例',
+										type: 'pie',
+										radius: '55%',
+										center: ['50%', '60%'],
+										data: [{
+												value: result.good,
+												name: '有效评论'
+											},
+											{
+												value: result.bad,
+												name: '垃圾评论'
+											}
+										],
+										emphasis: {
+											itemStyle: {
+												shadowBlur: 10,
+												shadowOffsetX: 0,
+												shadowColor: 'rgba(0, 0, 0, 0.5)'
+											}
+										}
+									}]
+								};
+								myCharts.setOption(option)
+							}
+						});
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

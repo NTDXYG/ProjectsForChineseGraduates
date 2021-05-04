@@ -1,0 +1,79 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 6,
+  "data": [
+    {
+      "experimentId": 80,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验1",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    },
+    {
+      "experimentId": 81,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验2",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    },
+    {
+      "experimentId": 82,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验3",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    },
+    {
+      "experimentId": 83,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验4",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    },
+    {
+      "experimentId": 84,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验5",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    },
+    {
+      "experimentId": 85,
+      "experimentTypeId": 32,
+      "experimentName": "数字电子技术实验6",
+      "experimentRequire": null,
+      "experimentTemplate": null,
+      "createUserId": 485,
+      "createTime": "2019/09/03 10:05:50",
+      "updateTime": "2019/09/03 10:05:50",
+      "createUserName": "邓",
+      "experimentTypeName": "数字电子实验课"
+    }
+  ]
+}

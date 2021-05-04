@@ -1,0 +1,40 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": [
+    {
+      "name": "Dashboard",
+      "icon": "layui-icon layui-icon-home",
+      "url": "javascript:;",
+      "subMenus": [
+        {
+          "name": "控制台",
+          "url": "../console/console.html"
+        },
+        {
+          "name": "分析页",
+          "url": "../console/dashboard.html"
+        }
+      ]
+    },
+    {
+      "name": "系统管理",
+      "icon": "layui-icon layui-icon-set",
+      "url": "javascript:;",
+      "subMenus": [
+        {
+          "name": "用户管理",
+          "url": "../system/user.html"
+        },
+        {
+          "name": "角色管理",
+          "url": "../system/role.html"
+        },
+        {
+          "name": "登录日志",
+          "url": "../system/loginRecord.html"
+        }
+      ]
+    }
+  ]
+}

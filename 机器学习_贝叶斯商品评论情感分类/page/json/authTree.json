@@ -1,0 +1,93 @@
+[
+  {
+    "name": "系统管理 ",
+    "checked": true,
+    "pId": -1,
+    "id": 1,
+    "open": true
+  },
+  {
+    "name": "用户管理 ",
+    "checked": true,
+    "pId": 1,
+    "id": 2,
+    "open": true
+  },
+  {
+    "name": "查看用户 user:view",
+    "checked": true,
+    "pId": 2,
+    "id": 3,
+    "open": true
+  },
+  {
+    "name": "更新用户 user:update",
+    "checked": true,
+    "pId": 2,
+    "id": 4,
+    "open": true
+  },
+  {
+    "name": "角色管理 ",
+    "checked": true,
+    "pId": 1,
+    "id": 5,
+    "open": true
+  },
+  {
+    "name": "查看角色 role:view",
+    "checked": true,
+    "pId": 5,
+    "id": 6,
+    "open": true
+  },
+  {
+    "name": "更新角色 role:update",
+    "checked": true,
+    "pId": 5,
+    "id": 7,
+    "open": true
+  },
+  {
+    "name": "权限管理 ",
+    "checked": true,
+    "pId": 1,
+    "id": 8,
+    "open": true
+  },
+  {
+    "name": "查看权限 authorities:view",
+    "checked": true,
+    "pId": 8,
+    "id": 9,
+    "open": true
+  },
+  {
+    "name": "更新权限 authorities:update",
+    "checked": true,
+    "pId": 8,
+    "id": 10,
+    "open": true
+  },
+  {
+    "name": "登录日志 loginRecord:view",
+    "checked": true,
+    "pId": 1,
+    "id": 11,
+    "open": true
+  },
+  {
+    "name": "系统监控 ",
+    "checked": true,
+    "pId": -1,
+    "id": 12,
+    "open": true
+  },
+  {
+    "name": "Druid监控 ",
+    "checked": true,
+    "pId": 12,
+    "id": 13,
+    "open": true
+  }
+]

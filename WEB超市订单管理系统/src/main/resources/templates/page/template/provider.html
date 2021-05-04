@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>订单管理</title>
+    <link rel="stylesheet" href="../../assets/libs/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../assets/module/admin.css?v=315"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- 页面加载loading -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body table-tool-mini full-table">
+            <div class="layui-form toolbar">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label w-auto">供应商：</label>
+                        <div class="layui-input-inline mr0">
+                            <input name="name" class="layui-input" type="text" placeholder="输入名称"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="padding-right: 110px;">
+                        <button class="layui-btn icon-btn" lay-filter="formSubSearchBook" lay-submit>
+                            <i class="layui-icon">&#xe615;</i>搜索
+                        </button>
+                        <button id="btnAddBook" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                    </div>
+                </div>
+            </div>
+
+            <table class="layui-table" id="tableBook" lay-filter="tableBook"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableBarBook">
+    <a class="layui-btn layui-btn-xs" lay-event="look">记录</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script id="demoEDCheckList" type="text/html">
+    <div style="padding: 25px 0 0 30px;">
+        <ul class="layui-timeline">
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">
+                        <h3 class="inline-block" id="edit">
+                            &nbsp;
+                        </h3>&emsp;<div id="edittime">{{d.modifyDate}}</div>
+                    </div>
+                    <p>修改供应商</p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">
+                        <h3 class="inline-block" id="create"></h3>&emsp;<div id="createtime">{{d.creationDate}}</div>
+                    </div>
+                    <p>创建供应商</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</script>
+<!-- 表单弹窗 -->
+<script type="text/html" id="modelBook">
+    <form id="modelBookForm" lay-filter="modelBookForm" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">编码号</label>
+            <div class="layui-input-block">
+                <input name="proCode" placeholder="请输入编码号" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商名称</label>
+            <div class="layui-input-block">
+                <input name="proName" placeholder="请输入供应商名称" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商描述</label>
+            <div class="layui-input-block">
+                <input name="proDesc" placeholder="请输入供应商描述" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商联系人</label>
+            <div class="layui-input-block">
+                <input name="proContact" placeholder="请输入供应商联系人" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商电话</label>
+            <div class="layui-input-block">
+                <input name="proPhone" placeholder="请输入商品供应商电话" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商地址</label>
+            <div class="layui-input-block">
+                <input name="proAddress" placeholder="请输入供应商地址" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">供应商传真</label>
+            <div class="layui-input-block">
+                <input name="proFax" placeholder="请输入供应商传真" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closePageDialog">取消</button>
+            <button class="layui-btn" lay-filter="modelSubmitBook" lay-submit>保存</button>
+        </div>
+    </form>
+</script>
+
+<!-- js部分 -->
+<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+<script>
+    layui.use(['layer', 'form', 'table', 'util', 'admin', 'tableX', 'laytpl'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laytpl = layui.laytpl;
+        var form = layui.form;
+        var table = layui.table;
+        var util = layui.util;
+        var admin = layui.admin;
+        var tableX = layui.tableX;
+        // 渲染表格
+        var insTb = table.render({
+            elem: '#tableBook',
+            url: '/api/getAllProviders',
+            page: true,
+            height: "full-100",
+            toolbar: true,
+            headers : {
+                Authorization: '[[${session.token}]]'
+            },
+            cellMinWidth: 100,
+            cols: [
+                [
+                    {field: 'proCode', title: '编码号'}
+                    ,{field: 'proName', sort: true, title: '供应商名称'}
+                    ,{field: 'proDesc', title: '供应商描述'}
+                    ,{field: 'proContact', title: '供应商联系人'}
+                    ,{field: 'proPhone', title: '供应商电话'}
+                    ,{field: 'proAddress',title: '供应商地址'}
+                    ,{field: 'proFax',title: '供货商传真'}
+                    ,{align: 'center', toolbar: '#tableBarBook', title: '操作', minWidth: 200}
+                ]
+            ]
+        });
+
+        // 添加
+        $('#btnAddBook').click(function () {
+            showEditModel();
+        });
+
+        // 搜索
+        form.on('submit(formSubSearchBook)', function (data) {
+            insTb.reload({
+                    where: data.field,
+                    headers : { Authorization: '[[${session.token}]]'},
+                    url:'/api/findProvider',
+                    page : {curr : 1}},
+                'data');
+        });
+
+        // 工具条点击事件
+        table.on('tool(tableBook)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            } else if (layEvent === 'del') { // 删除
+                doDel(data.id, data.proName);
+            } else if (layEvent == 'look') {
+                openCheckList(data);
+            }
+        });
+        // 审核记录弹窗
+        function openCheckList(d) {
+            if (d.createdBy !== null) {
+                $.ajax({
+                    url: '/ajax/getUser',
+                    dataType: 'json',
+                    data: {
+                        id: d.createdBy
+                    },
+                    type: 'get',
+                    headers: {
+                        Authorization: '[[${session.token}]]'
+                    },
+                    success: function (res) {
+                        console.log(res.msg)
+                        $("#create").html(res.msg)
+                    }
+                })
+            }
+            if (d.modifyBy !== null){
+                $.ajax({
+                    url: '/ajax/getUser',
+                    dataType: 'json',
+                    data:{
+                        id:d.modifyBy
+                    },
+                    type: 'get',
+                    headers : {
+                        Authorization: '[[${session.token}]]'
+                    },
+                    success: function (res) {
+                        $("#edit").html(res.msg)
+                    }
+                })
+            }
+            d.creationDate = util.toDateString(d.creationDate)
+            if (d.modifyDate != null){
+                d.modifyDate = util.toDateString(d.modifyDate)
+            }
+            laytpl(demoEDCheckList.innerHTML).render(d, function (html) {
+                admin.open({
+                    type: 1,
+                    title: '记录详情',
+                    content: html
+                });
+            });
+        }
+        // 显示表单弹窗
+        function showEditModel(mBook) {
+            var option = "";
+            if(mBook==null){
+                admin.open({
+                    type: 1,
+                    title: '添加供应商',
+                    content: $('#modelBook').html(),
+                    success: function (layero, dIndex) {
+                        $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                        var url = '/api/addProvider';
+                        // 回显数据
+                        form.val('modelBookForm', mBook);
+                        // 表单提交事件
+                        form.on('submit(modelSubmitBook)', function (data) {
+                            layer.load(2);
+                            $.ajax({
+                                url:url,
+                                type:"POST",
+                                data:JSON.stringify(data.field),
+                                headers : { Authorization: '[[${session.token}]]'},
+                                contentType:"application/json; charset=utf-8",
+                                dataType:"json",
+                                success: function(res){
+                                    layer.closeAll('loading');
+                                    if (res.code == 200) {
+                                        layer.close(dIndex);
+                                        layer.msg(res.msg, {icon: 1});
+                                        insTb.reload({}, 'data');
+                                    } else {
+                                        layer.msg("权限不够", {icon: 2});
+                                    }
+                                },
+                                error : function(xhr,textStatus,errorThrown){
+                                    if (xhr.status == 401) {
+                                        layer.closeAll('loading');
+                                        layer.msg("权限不够", {icon: 2});
+                                    } else{
+                                        // 调用外部的error
+                                        error && error(xhr,textStatus,errorThrown);
+                                    }
+                                }
+                            })
+                            return false;
+                        });
+                    }
+                });
+            }else{
+                admin.open({
+                    type: 1,
+                    title: '修改供应商',
+                    content: $('#modelBook').html(),
+                    success: function (layero, dIndex) {
+                        $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                        var url = '/api/updateProvider';
+                        //mBook && (mBook.roleId = mUser.roles[0].roleId);
+                        // 回显数据
+                        form.val('modelBookForm', mBook);
+                        console.log(mBook)
+                        // 表单提交事件
+                        form.on('submit(modelSubmitBook)', function (data) {
+                            layer.load(2);
+                            $.ajax({
+                                url:url,
+                                type:"POST",
+                                data:JSON.stringify(data.field),
+                                contentType:"application/json; charset=utf-8",
+                                headers : { Authorization: '[[${session.token}]]'},
+                                dataType:"json",
+                                success: function(res){
+                                    layer.closeAll('loading');
+                                    if (res.code == 200) {
+                                        layer.close(dIndex);
+                                        layer.msg(res.msg, {icon: 1});
+                                        insTb.reload({}, 'data');
+                                    } else {
+                                        layer.msg("权限不够", {icon: 2});
+                                    }
+                                },
+                                error : function(xhr,textStatus,errorThrown){
+                                    if (xhr.status == 401) {
+                                        layer.closeAll('loading');
+                                        layer.msg("权限不够", {icon: 2});
+                                    } else{
+                                        // 调用外部的error
+                                        error && error(xhr,textStatus,errorThrown);
+                                    }
+                                }
+                            })
+                            return false;
+                        });
+                    }
+                });
+            }
+
+        }
+
+        // 删除
+        function doDel(id, name) {
+            layer.confirm('确定要删除“' + name + '”吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                layer.load(2);
+                $.ajax({
+                    url:'/api/delProvider',
+                    type:"GET",
+                    data:{
+                        id: id
+                    },
+                    headers : { Authorization: '[[${session.token}]]'},
+                    dataType:"json",
+                    success: function(res){
+                        layer.closeAll('loading');
+                        if (res.code == 200) {
+                            layer.msg(res.msg, {icon: 1});
+                            insTb.reload({}, 'data');
+                        } else {
+                            layer.msg("权限不够", {icon: 2});
+                        }
+                    },
+                    error : function(xhr,textStatus,errorThrown){
+                        if (xhr.status == 401) {
+                            layer.closeAll('loading');
+                            layer.msg("权限不够", {icon: 2});
+                        } else{
+                            // 调用外部的error
+                            error && error(xhr,textStatus,errorThrown);
+                        }
+                    }
+                })
+            });
+        }
+
+
+    });
+</script>
+
+</body>
+</html>
