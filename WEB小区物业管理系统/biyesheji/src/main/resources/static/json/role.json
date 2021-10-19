@@ -1,0 +1,31 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "roleId": 1,
+      "roleName": "管理员",
+      "comments": "系统管理员",
+      "isDelete": 0,
+      "createTime": "2019/03/29 16:38:03",
+      "updateTime": "2019/03/29 16:38:03"
+    },
+    {
+      "roleId": 2,
+      "roleName": "普通用户",
+      "comments": "系统普通用户",
+      "isDelete": 0,
+      "createTime": "2019/03/29 16:38:03",
+      "updateTime": "2019/03/29 16:38:03"
+    },
+    {
+      "roleId": 3,
+      "roleName": "游客",
+      "comments": "系统游客",
+      "isDelete": 0,
+      "createTime": "2019/03/29 16:38:03",
+      "updateTime": "2019/03/29 16:38:03"
+    }
+  ]
+}

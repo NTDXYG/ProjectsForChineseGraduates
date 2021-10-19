@@ -1,0 +1,138 @@
+{
+  "msg": "查询成功",
+  "code": 200,
+  "data": [
+    {
+      "name": "其他",
+      "updateTime": 1545804042000,
+      "type": "dir",
+      "isDir": true
+    },
+    {
+      "name": "JMerter测试说明书.doc",
+      "updateTime": 1545803706000,
+      "type": "doc",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.doc",
+      "isDir": false
+    },
+    {
+      "name": "HPI修订情况一览表.xls",
+      "updateTime": 1545803726000,
+      "type": "xls",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.xls",
+      "isDir": false
+    },
+    {
+      "name": "仓库管理系统产品介绍180313.pptx",
+      "updateTime": 1545803742000,
+      "type": "ppt",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.pptx",
+      "isDir": false
+    },
+    {
+      "name": "宣传画册1-17.pdf",
+      "updateTime": 1545803770000,
+      "type": "pdf",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.pdf",
+      "isDir": false
+    },
+    {
+      "name": "更新日志.txt",
+      "updateTime": 1545803848000,
+      "type": "txt",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.txt",
+      "isDir": false
+    },
+    {
+      "name": "index.html",
+      "updateTime": 1545803972000,
+      "type": "htm",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.html",
+      "isDir": false
+    },
+    {
+      "name": "honehone_clock_wh.swf",
+      "updateTime": 1545803998000,
+      "type": "flash",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.swf",
+      "isDir": false
+    },
+    {
+      "name": "试验报告管理平台.pdm",
+      "updateTime": 1545804016000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.pdm",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "a0e0bffa077b4218a0739433439521e2.jpg",
+      "updateTime": 1545804022000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "微信图片_20180423141141.jpg",
+      "updateTime": 1545804026000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "微信图片_20180423140441.jpg",
+      "updateTime": 1545804396000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "微信图片_20180423141146.jpg",
+      "updateTime": 1545804428000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "name": "runnerw.exe",
+      "updateTime": 1545815206000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.exe",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "updateTime": 1545815222000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "Penguins.jpg",
+      "updateTime": 1545815694000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    },
+    {
+      "smUrl": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "hasSm": true,
+      "name": "TIM图片20171018133340.png",
+      "updateTime": 1545815704000,
+      "type": "file",
+      "url": "https://pic.qqtn.com/up/2018-9/15367146917869444.jpg",
+      "isDir": false
+    }
+  ]
+}

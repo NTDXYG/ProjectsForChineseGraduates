@@ -1,0 +1,57 @@
+/* components/login.wxss */
+.login-card {
+  display: flex;
+  align-items: center;
+  margin: 50rpx 27rpx 0;
+  height: 200rpx;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+}
+
+.login-head {
+  flex-shrink: 0;
+  margin-left: 53rpx;
+  height: 100rpx;
+  width: 100rpx;
+  background: #F5E069;
+  border-radius: 50%;
+}
+
+.login-info {
+  flex: 1;
+  margin-left: 31rpx;
+}
+
+.login-text {
+  line-height: 48rpx;
+  font-size: 34rpx;
+  color: rgba(29, 29, 38, 0.8);
+  font-weight: bold;
+}
+
+.login-tips {
+  margin-top: 6rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #8B8B8B;
+}
+
+.login-btn {
+  margin: 34rpx auto 0;
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #F5E069;
+  outline: none;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #34373D;
+  font-weight: bold;
+}
+
+.login-btn::after {
+  border: none;
+}

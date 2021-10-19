@@ -1,0 +1,79 @@
+/* pages/comment/comment.wxss */
+
+.comment-list {
+  margin-top: 16rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+}
+
+.comment-title {
+  padding: 25rpx 26rpx 14rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: rgba(29, 29, 38, 0.8);
+  font-weight: bold;
+}
+
+.comment-card {
+  display: flex;
+  padding: 30rpx 23rpx 0 26rpx;
+}
+
+.comment-card:last-child .comment-cnt {
+  border-bottom: none;
+}
+
+.comment-avatar {
+  flex-shrink: 0;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.comment-cnt {
+  flex: 1;
+  margin-left: 24rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+}
+
+.comment-top {
+  display: flex;
+  font-size: 25rpx;
+  line-height: 36rpx;
+  color: rgba(29, 29, 38, 0.5);
+}
+
+.comment-username {
+  flex: 1;
+}
+
+.comment-content {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #1d1d26;
+}
+
+.preview-list {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.preview-item {
+  margin-right: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+}
+
+.preview-cnt {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.preview-image {
+  margin-right: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 5rpx;
+}

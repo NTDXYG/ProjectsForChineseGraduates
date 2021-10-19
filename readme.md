@@ -10,7 +10,7 @@
 
 B站视频：https://www.bilibili.com/video/BV1s7411N7BX
 
-下载地址：Waiting...
+下载地址：仓库中的 final_paper.pdf
 
 # 3、项目列表
 

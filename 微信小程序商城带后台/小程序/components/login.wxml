@@ -1,0 +1,9 @@
+<!--components/login.wxml-->
+<view class="login-card">
+  <view class="login-head"></view>
+  <view class="login-info">
+    <view class="login-text">未登录</view>
+    <view class="login-tips">点击微信登录后可方便购物</view>
+  </view>
+</view>
+<button class="login-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">去登录</button>

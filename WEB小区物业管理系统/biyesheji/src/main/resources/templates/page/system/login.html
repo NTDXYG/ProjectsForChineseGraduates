@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>登录</title>
+    <link rel="stylesheet" href="../../assets/libs/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../assets/css/login.css?v=315">
+    <link rel="stylesheet" href="../../assets/css/drag.css">
+    <link rel="stylesheet" href="../../assets/module/admin.css?v=315">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        if (window != top) {
+            top.location.replace(location.href);
+        }
+    </script>
+</head>
+<body>
+<div class="login-wrapper">
+    <div class="login-header">
+        <img src="../../assets/images/logo.png"> 嘉园小区物业管理系统
+    </div>
+    <div class="login-body">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <i class="layui-icon layui-icon-engine"></i>&nbsp;&nbsp;用户登录
+            </div>
+            <form class="layui-card-body layui-form layui-form-pane">
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
+                    <div class="layui-input-block">
+                        <input name="phone" type="text" placeholder="手机号" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i></label>
+                    <div class="layui-input-block">
+                        <input name="password" type="password" placeholder="密码" class="layui-input"
+                               lay-verType="tips" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-vercode"></i></label>
+                    <div class="layui-input-block">
+                        <div class="layui-row inline-block">
+                            <div id="drag"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <a id="btnAddReader" class="layui-link">帐号注册</a>
+                </div>
+                <div class="layui-form-item">
+                    <button lay-filter="login-submit" id="submit" style="opacity:0.5;pointer-events:none;" class="layui-btn layui-btn-fluid" lay-submit>登 录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- 表单弹窗 -->
+<script type="text/html" id="modelBook">
+    <form id="modelBookForm" lay-filter="modelBookForm" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input name="username" placeholder="请输入姓名" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+                <input name="phone" placeholder="请输入手机号" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="phone" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="0" title="男" checked/>
+                <input type="radio" name="sex" value="1" title="女"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closePageDialog">取消</button>
+            <button class="layui-btn" lay-filter="modelSubmitBook" lay-submit>确定</button>
+        </div>
+    </form>
+</script>
+
+<!-- js部分 -->
+<script src="../../assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="../../assets/js/drag.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+<script>
+    layui.use(['layer', 'form', 'table', 'util', 'admin', 'tableX'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var util = layui.util;
+        var admin = layui.admin;
+        var tableX = layui.tableX;
+        $('#drag').drag();
+        // 添加
+        $('#btnAddReader').click(function () {
+            showEditModel();
+        });
+        // 显示表单弹窗
+        function showEditModel() {
+                admin.open({
+                    type: 1,
+                    title: '注册用户',
+                    content: $('#modelBook').html(),
+                    success: function (layero, dIndex) {
+                        $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                        var url = '/api/addUser';
+                        // 表单提交事件
+                        form.render();
+                        form.on('submit(modelSubmitBook)', function (data) {
+                            layer.load(2);
+                            $.ajax({
+                                url:url,
+                                type:"POST",
+                                data:JSON.stringify(data.field),
+                                contentType:"application/json; charset=utf-8",
+                                dataType:"json",
+                                success: function(res){
+                                    layer.closeAll('loading');
+                                    if (res.code == 200) {
+                                        layer.close(dIndex);
+                                        layer.msg(res.msg, {icon: 1});
+                                    } else {
+                                        layer.msg(res.msg, {icon: 2});
+                                    }
+                                }
+                            })
+                            return false;
+                        });
+                    }
+                });
+        }
+
+        // 表单提交
+        form.on('submit(login-submit)', function (obj) {
+            $.ajax({
+                type: "post",
+                contentType: 'application/json',
+                url: "/api/loginByPassword",
+                data: JSON.stringify(obj.field),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code == '200') {
+                        layer.msg('登录成功',
+                            {
+                                icon: 1,
+                                time: 1500
+                            }, function () {
+                                location.replace('/user/index')
+                            })
+                    } else {
+                        layer.alert(data.msg, {icon: 2}, function (index) {
+                            layer.close(index);
+                        });
+                    }
+                }
+            })
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

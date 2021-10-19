@@ -1,0 +1,9 @@
+<!--components/product.wxml-->
+<view class="product-card">
+  <image class="product-image" mode="widthFix" src="{{productImage}}"></image>
+  <view class="product-info">
+    <view class="product-name">{{productName}}</view>
+    <view class="product-price">￥ {{productPrice}}</view>
+  </view>
+</view>
+

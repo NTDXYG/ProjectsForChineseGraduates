@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "添加评论",
+  "usingComponents": {
+    "product": "/components/product"
+  }
+}

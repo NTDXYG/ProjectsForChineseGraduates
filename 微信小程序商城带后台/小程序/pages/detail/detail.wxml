@@ -1,0 +1,56 @@
+<!--pages/detail/detail.wxml-->
+<import src="../../utils/wxParse/wxParse.wxml" />
+<view class='top'>
+  <image src="{{product.image}}" class='top-image'></image>
+  <view class='top-name'>{{product.name}}</view>
+  <view class='top-source'>{{product.type.name}}</view>
+  <view class='top-price-item'>
+    <view class='top-price'>{{product.price}}</view>
+    <view class='top-money'>￥</view>
+  </view>
+</view>
+<view class='service'>
+  <view class='service-promise'>
+    <image src="/images/check-yellow.png" class='service-check'></image>
+    <view class='service-promise-text'>7天免费退换</view>
+  </view>
+  <view class='service-promise'>
+    <image src="/images/check-yellow.png" class='service-check'></image>
+    <view class='service-promise-text'>24小时内发货并赠送运费险</view>
+  </view>
+  <view class='line'></view>
+  <view class='evaluation-wrapper' bindtap='onTapCommentEntry'>
+    <view class='evaluation'>
+      <view class='evaluation-title'>已买评价</view>
+      <view class='evaluation-num'>{{reviewCount}} 条</view>
+      <image src="/images/grey-arrow.png" class='evaluation-right'></image>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class="doc">
+    <view class="wxParse-p">
+      <template is="wxParse" data="{{wxParseData:xq.nodes}}">
+      </template>
+    </view>
+  </view>
+</view>
+<view class='separator'>
+  <image src="/images/line-black.png" class='separator-line'></image>
+  <view class='separator-text'>猜你喜欢</view>
+  <image src="/images/line-black.png" class='separator-line'></image>
+</view>
+<view class='list' style="margin-bottom:42px">
+  <navigator  wx:for='{{recomList}}'  url="/pages/detail/detail?id={{item.goods._id}}" class='list-item list-item-right'>
+    <image src="{{item.goods.image}}" class='list-item-image'></image>
+    <view class='list-item-title'>{{item.goods.name}}</view>
+    <view class='list-item-bottom'>
+      <view class='list-item-bottom-icon'>￥</view>
+      <view class='list-item-bottom-price'>{{item.goods.price}}</view>
+    </view>
+  </navigator>
+</view>
+<view class='opr'>
+  <view class='opr-trolley' bindtap='addToTrolley'>加入购物车</view>
+  <view class='opr-buy' bindtap='buy'>立即购买</view>
+</view>

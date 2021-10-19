@@ -1,0 +1,97 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 26,
+  "data": [
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "权限管理",
+      "authorityName": "查询所有权限",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "get:/v1/authorities",
+      "checked": 0,
+      "sort": 1
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "权限管理",
+      "authorityName": "给角色添加权限",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "post:/v1/authorities/role",
+      "checked": 0,
+      "sort": 2
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "权限管理",
+      "authorityName": "移除角色权限",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "delete:/v1/authorities/role",
+      "checked": 0,
+      "sort": 3
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "权限管理",
+      "authorityName": "同步权限",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "post:/v1/authorities/sync",
+      "checked": 0,
+      "sort": 4
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "菜单管理",
+      "authorityName": "查询所有菜单",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "get:/v1/menu",
+      "checked": 0,
+      "sort": 5
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "菜单管理",
+      "authorityName": "添加菜单",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "post:/v1/menu",
+      "checked": 0,
+      "sort": 6
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "菜单管理",
+      "authorityName": "修改菜单",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "put:/v1/menu",
+      "checked": 0,
+      "sort": 7
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "菜单管理",
+      "authorityName": "删除菜单",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "delete:/v1/menu/{id}",
+      "checked": 0,
+      "sort": 8
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "客户端管理",
+      "authorityName": "查询所有客户端",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "get:/v1/oauth/client",
+      "checked": 0,
+      "sort": 9
+    },
+    {
+      "serialVersionUID": -6058060376656180793,
+      "parentName": "客户端管理",
+      "authorityName": "添加客户端",
+      "createTime": "2019/03/29 16:38:03",
+      "authority": "post:/v1/oauth/client",
+      "checked": 0,
+      "sort": 10
+    }
+  ]
+}

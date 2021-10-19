@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/order/order",
+    "pages/trolley/trolley",
+    "pages/user/user",
+    "pages/detail/detail",
+    "pages/add-comment/add-comment",
+    "pages/comment/comment",
+    "pages/category/category"
+  ],
+  "tabBar": {
+    "color": "#5d5f64",
+    "selectedColor": "#5d5f64",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-sel.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-sel.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/trolley/trolley",
+        "iconPath": "images/trolley.png",
+        "selectedIconPath": "images/trolley-sel.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-sel.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "商城小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

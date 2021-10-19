@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>EasyWeb后台开发框架</title>
+		<link rel="stylesheet" href="../../assets/libs/layui/css/layui.css" />
+		<link rel="stylesheet" href="../../assets/module/admin.css?v=315" />
+		<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+
+		<!-- 正文开始 -->
+		<div class="layui-fluid">
+			<div class="layui-card-body table-tool-mini">
+				<!-- 统计图表 -->
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+					<div class="layui-card">
+						<div class="layui-card-header">职位福利</div>
+						<div class="layui-card-body">
+							<div id="zwfl" style="height: 500px;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+					<div class="layui-card">
+						<div class="layui-card-header">公司福利</div>
+						<div class="layui-card-body">
+							<div id="gsfl" style="height: 500px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+		</div>
+
+		<!-- 加载动画 -->
+		<div class="page-loading">
+			<div class="ball-loader">
+				<span></span><span></span><span></span><span></span>
+			</div>
+		</div>
+
+		<!-- js部分 -->
+		<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+		<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+		<script src="../../assets/libs/echarts/echarts.min.js"></script>
+		<script src="../../assets/libs/echarts/echarts-wordcloud.js"></script>
+		<script src="../../assets/libs/echarts/echartsTheme.js"></script>
+		<script>
+			layui.use(['layer', 'table', 'admin', 'form'], function() {
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				var table = layui.table;
+				var admin = layui.admin;
+				var form = layui.form;
+				var myCharts1 = echarts.init(document.getElementById('zwfl'), myEchartsTheme);
+				var myCharts2 = echarts.init(document.getElementById('gsfl'), myEchartsTheme);
+				init();
+
+				function init() {
+					form.render();
+					console.log('初始化')
+					$.ajax({
+						type: 'GET',
+						url: 'http://127.0.0.1:5000/fuli',
+						success: function(res) {
+							myCharts1.setOption({
+								tooltip: {
+									show: true
+								},
+								series: [{
+									type: "wordCloud",
+									gridSize: 6,
+									shape: 'diamond',
+									sizeRange: [12, 50],
+									width: 800,
+									height: 500,
+									textStyle: {
+										normal: {
+											color: function() {
+												return 'rgb(' + [
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160)
+												].join(',') + ')';
+											}
+										},
+										emphasis: {
+											shadowBlur: 10,
+											shadowColor: '#333'
+										}
+									},
+									data: res.zwfl,
+								}]
+							});
+							myCharts2.setOption({
+								tooltip: {
+									show: true
+								},
+								series: [{
+									type: "wordCloud",
+									gridSize: 6,
+									shape: 'circle',
+									sizeRange: [12, 50],
+									width: 800,
+									height: 500,
+									textStyle: {
+										normal: {
+											color: function() {
+												return 'rgb(' + [
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160),
+													Math.round(Math.random() * 160)
+												].join(',') + ')';
+											}
+										},
+										emphasis: {
+											shadowBlur: 10,
+											shadowColor: '#333'
+										}
+									},
+									data: res.gsfl,
+								}]
+							});
+						}
+					});
+				}
+
+				// 窗口大小改变事件
+				window.onresize = function() {
+					myCharts1.resize();
+					myCharts2.resize();
+				};
+
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>EasyWeb后台开发框架</title>
+    <link rel="stylesheet" href="../../assets/libs/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../assets/module/admin.css?v=315"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /** 统计快捷方式样式 */
+        .console-link-block {
+            display: block;
+            position: relative;
+            color: #fff;
+            font-size: 18px;
+            padding: 25px 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, .1);
+            background-color: rgb(155, 197, 57);
+        }
+
+        .console-link-block .console-link-block-num {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .console-link-block .console-link-block-icon {
+            height: 70px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .console-link-block .console-link-block-band {
+            background-color: rgb(227, 42, 22);
+            font-size: 14px;
+            position: absolute;
+            width: 80px;
+            padding: 0px 0;
+            text-align: center;
+            transform: rotate(45deg);
+            right: -21px;
+            top: 8px;
+            color: rgba(255, 255, 255, .9);
+            z-index: 1;
+        }
+
+        /** //统计快捷方式样式end */
+
+        /** 小屏幕下样式 */
+        @media screen and (max-width: 992px) {
+            .console-link-block {
+                font-size: 14px;
+                padding: 15px 10px;
+            }
+
+            .console-link-block .console-link-block-num {
+                font-size: 28px;
+                margin-bottom: 0px;
+            }
+
+            .console-link-block .console-link-block-icon {
+                height: 45px;
+                right: 10px;
+            }
+
+            .console-link-block .console-link-block-band {
+                font-size: 12px;
+                right: -25px;
+                top: 8px;
+            }
+
+        }
+
+        /** 设置每个快捷块的颜色 */
+        #consoleLink > div:first-child .console-link-block {
+            background-color: rgb(155, 197, 57);
+        }
+
+        #consoleLink > div:nth-child(2) .console-link-block {
+            background-color: rgb(85, 165, 234);
+        }
+
+        #consoleLink > div:nth-child(3) .console-link-block {
+            background-color: rgb(157, 175, 291);
+        }
+
+        #consoleLink > div:nth-child(4) .console-link-block {
+            background-color: rgb(245, 145, 162);
+        }
+
+        #consoleLink > div:nth-child(5) .console-link-block {
+            background-color: rgb(254, 170, 79);
+        }
+
+        #consoleLink > div:last-child .console-link-block {
+            background-color: rgb(64, 212, 176);
+        }
+
+        /** //设置每个快捷块的颜色end */
+    </style>
+</head>
+
+<body>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <!-- 快捷方式 -->
+    <div id="consoleLink" class="layui-row layui-col-space15">
+        <div class="layui-col-lg3 layui-col-md3 layui-col-sm3 layui-col-xs6">
+            <div class="console-link-block" ew-href="/user" ew-title="业主数量">
+                <img class="console-link-block-icon" src="../../assets/images/homepic1.png">
+                <div class="console-link-block-num">[[${userCount}]]</div>
+                <div class="console-link-block-text">业主</div>
+                <div class="console-link-block-band">去查看</div>
+            </div>
+        </div>
+        <div class="layui-col-lg3 layui-col-md3 layui-col-sm3 layui-col-xs6">
+            <div class="console-link-block" ew-href="/gonggao" ew-title="公告数量">
+                <img class="console-link-block-icon" src="../../assets/images/homepic2.png">
+                <div class="console-link-block-num">[[${gonggaoCount}]]</div>
+                <div class="console-link-block-text">公告</div>
+                <div class="console-link-block-band">去查看</div>
+            </div>
+        </div>
+        <div class="layui-col-lg3 layui-col-md3 layui-col-sm3 layui-col-xs6">
+            <div class="console-link-block" ew-href="/tousu" ew-title="投诉数量">
+                <img class="console-link-block-icon" src="../../assets/images/homepic5.png">
+                <div class="console-link-block-num">[[${tousuCount}]]</div>
+                <div class="console-link-block-text">投诉</div>
+                <div class="console-link-block-band">去查看</div>
+            </div>
+        </div>
+        <div class="layui-col-lg3 layui-col-md3 layui-col-sm3 layui-col-xs6">
+            <div class="console-link-block" ew-href="/repair" ew-title="维修数量">
+                <img class="console-link-block-icon" src="../../assets/images/homepic6.png">
+                <div class="console-link-block-num">[[${repairCount}]]</div>
+                <div class="console-link-block-text">维修</div>
+                <div class="console-link-block-band">去查看</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 统计图表 -->
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">房屋统计</div>
+                <div class="layui-card-body">
+                    <div style="height: 300px;position: relative;">
+                        <div id="tjDivDay" style="height: 100%;"></div>
+                    </div>
+                    <div class="layui-row text-center">
+                        <div class="layui-col-xs6">
+                            <div id="tv1Num1" style="color: #28a6d6;font-size: 22px;">[[${roomFreeCount}]]</div>
+                            <div style="font-size: 18px;padding: 10px 0 15px 0;">闲置</div>
+                        </div>
+                        <div class="layui-col-xs6">
+                            <div id="tv1Num2" style="color: #28a6d6;font-size: 22px;">[[${roomCount}]]</div>
+                            <div style="font-size: 18px;padding: 10px 0 15px 0;">总数</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">车位统计</div>
+                <div class="layui-card-body">
+                    <div style="height: 300px;position: relative;">
+                    <div id="tjDivWeek" style="height: 100%;"></div>
+                    </div>
+                </div>
+                <div class="layui-row text-center">
+                    <div class="layui-col-xs6">
+                        <div id="tv1Num3" style="color: #28a6d6;font-size: 22px;">[[${carFreeCount}]]</div>
+                        <div style="font-size: 18px;padding: 10px 0 15px 0;">闲置</div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div id="tv1Num4" style="color: #28a6d6;font-size: 22px;">[[${carCount}]]</div>
+                        <div style="font-size: 18px;padding: 10px 0 15px 0;">总数</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">缴费统计</div>
+                <div class="layui-card-body">
+                    <div style="height: 300px;position: relative;">
+                    <div id="tjDivMonth" style="height: 100%;"></div>
+                    </div>
+                </div>
+                <div class="layui-row text-center">
+                    <div class="layui-col-xs6">
+                        <div id="tv1Num5" style="color: #28a6d6;font-size: 22px;">[[${paymentFreeCount}]]</div>
+                        <div style="font-size: 18px;padding: 10px 0 15px 0;">未缴</div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div id="tv1Num6" style="color: #28a6d6;font-size: 22px;">[[${paymentCount}]]</div>
+                        <div style="font-size: 18px;padding: 10px 0 15px 0;">已缴</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 加载动画 -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- js部分 -->
+<script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js?v=315"></script>
+<script src="../../assets/libs/echarts/echarts.min.js"></script>
+<script src="../../assets/libs/echarts/echartsTheme.js"></script>
+<script>
+    layui.use(['layer', 'table', 'admin'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var table = layui.table;
+        var admin = layui.admin;
+        var myCharts1 = echarts.init(document.getElementById('tjDivDay'), myEchartsTheme);
+        var options1 = {
+            title: {
+                show: true,
+                x: 'center',
+                y: '33%',
+                text: '剩余数/总数',
+                textStyle: {
+                    fontSize: 20,
+                    color: '#333'
+                },
+                subtextStyle: {
+                    fontSize: 50,
+                    lineHeight: 100,
+                    color: '#28a6d6'
+                }
+            },
+            color: ['#18B4E7', '#ddd'],
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: '数量',
+                    type: 'pie',
+                    radius: ['75%', '80%'],
+                    label: {
+                        normal: {
+                            show: false
+                        }
+                    }
+                }
+            ]
+        };
+        myCharts1.setOption(options1);
+        myCharts1.setOption({
+            title: {
+                subtext: [[${roomFreeCount}]] + "/" + [[${roomCount}]],
+                subtextStyle: {
+                    fontSize: 25
+                },
+            },
+            series: [
+                {
+                    data: [
+                        {name: "剩余", value: [[${roomFreeCount}]]},
+                        {name: "租出", value: [[${roomCount - roomFreeCount}]]}
+                    ]
+                }
+            ]
+        });
+        //-------------------------------------
+        var myCharts2 = echarts.init(document.getElementById('tjDivWeek'), myEchartsTheme);
+        var options2 = {
+            title: {
+                show: true,
+                x: 'center',
+                y: '33%',
+                text: '剩余数/总数',
+                textStyle: {
+                    fontSize: 20,
+                    color: '#333'
+                },
+                subtextStyle: {
+                    fontSize: 50,
+                    lineHeight: 100,
+                    color: '#28a6d6'
+                }
+            },
+            color: ['#18B4E7', '#ddd'],
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: '数量',
+                    type: 'pie',
+                    radius: ['75%', '80%'],
+                    label: {
+                        normal: {
+                            show: false
+                        }
+                    }
+                }
+            ]
+        };
+        myCharts2.setOption(options2);
+        myCharts2.setOption({
+            title: {
+                subtext: [[${carFreeCount}]] + "/" + [[${carCount}]],
+                subtextStyle: {
+                    fontSize: 25
+                },
+            },
+            series: [
+                {
+                    data: [
+                        {name: "剩余", value: [[${carFreeCount}]]},
+                        {name: "租出", value: [[${carCount - carFreeCount}]]}
+                    ]
+                }
+            ]
+        });
+        //-------------------------------------
+        var myCharts3 = echarts.init(document.getElementById('tjDivMonth'), myEchartsTheme);
+        var options3 = {
+            title: {
+                show: true,
+                x: 'center',
+                y: '33%',
+                text: '剩余数/总数',
+                textStyle: {
+                    fontSize: 20,
+                    color: '#333'
+                },
+                subtextStyle: {
+                    fontSize: 50,
+                    lineHeight: 100,
+                    color: '#28a6d6'
+                }
+            },
+            color: ['#18B4E7', '#ddd'],
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: '数量',
+                    type: 'pie',
+                    radius: ['75%', '80%'],
+                    label: {
+                        normal: {
+                            show: false
+                        }
+                    }
+                }
+            ]
+        };
+        myCharts3.setOption(options3);
+        myCharts3.setOption({
+            title: {
+                subtext: [[${paymentFreeCount}]] + "/" + [[${paymentCount}]],
+                subtextStyle: {
+                    fontSize: 25
+                },
+            },
+            series: [
+                {
+                    data: [
+                        {name: "剩余", value: [[${paymentFreeCount}]]},
+                        {name: "已缴", value: [[${paymentCount - paymentFreeCount}]]}
+                    ]
+                }
+            ]
+        });
+        // 窗口大小改变事件
+        window.onresize = function () {
+            myCharts1.resize();
+            myCharts2.resize();
+            myCharts3.resize();
+        };
+
+    });
+</script>
+</body>
+
+</html>

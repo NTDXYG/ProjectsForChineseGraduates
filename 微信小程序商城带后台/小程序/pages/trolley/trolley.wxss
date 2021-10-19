@@ -1,0 +1,155 @@
+/* pages/trolley/trolley.wxss */
+
+.trolley-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 24rpx;
+}
+
+.trolley-total {
+  display: flex;
+  align-items: center;
+  padding-left: 35rpx;
+  font-size: 32rpx;
+}
+
+.trolley-check-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #ececee;
+}
+
+.trolley-check-wrapper.white {
+  background: #fff;
+}
+
+.trolley-check-wrapper.check {
+  background: #f5e069;
+}
+
+.trolley-check {
+  width: 22rpx;
+  height: 16rpx;
+}
+
+.trolley-total-text, .trolley-edit, .bottom-text {
+  margin-left: 18rpx;
+  margin-right: 33rpx;
+  color: rgb(52, 55, 61, 0.8);
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.product-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 54rpx;
+  bottom: 100rpx;
+  padding-bottom: 30rpx;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  margin: 0 26rpx 26rpx;
+  padding-left: 32rpx;
+  height: 200rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+}
+
+.product-info {
+  flex: 1;
+  padding: 38rpx 28rpx 0 36rpx;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.product-img {
+  flex-shrink: 0;
+  margin-left: 31rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.product-name {
+  color: rgba(29, 29, 38, 0.8);
+}
+
+.product-price {
+  margin-top: 3rpx;
+}
+
+.product-count {
+  text-align: right;
+}
+
+.product-count-edit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.count-minus, .count-add {
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  border-radius: 50%;
+  border: 3rpx solid #f6e474;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.count-now {
+  margin: 0 18rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding-left: 24rpx;
+}
+
+.bottom-pay {
+  height: 100rpx;
+  width: 200rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+  background: #f5e069;
+  color: rgba(52, 55, 61, 0.5);
+  font-weight: bold;
+}
+
+.bottom-pay.canpay {
+  color: #34373d
+}
+
+.bottom-text {
+  flex: 1;
+  text-align: right;
+  opacity: 0.5;
+  margin-right: 5rpx;
+}
+
+.bottom-price {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-right: 20rpx;
+}

@@ -1,0 +1,25 @@
+<!--pages/order/order.wxml-->
+<image class="bg" src="/images/bg.png"></image>
+<view wx:if="{{ orderList.length === 0 }}" class="empty-list">
+  <image class="empty-image" src="/images/order.png"></image>
+  <view class="empty-text">暂时还没有订单</view>
+</view>
+<view wx:else>
+  <view class='order-head'>
+    <image src="/images/line-black.png" class='order-head-line'></image>
+    <view class='order-head-text'>已完成</view>
+  </view>
+  <view wx:for="{{orderList}}" wx:for-index="index" wx:for-item="block" wx:key="id" class="order-block">
+    <view class="order-card">
+      <image class="order-image" mode="widthFix" src="{{block.goods.image}}"></image>
+      <view class="order-info">
+        <view class="order-name">{{block.goods.name}}</view>
+        <view class="order-price">¥ {{block.goods.price}}</view>
+      </view>
+      <view class="order-opr">
+        <view class="order-btn" bindtap='goComment' data-item='{{block.goods}}'>评价</view>
+        <view class="order-count">x{{block.count}}</view>
+      </view>
+    </view>
+  </view>
+</view>

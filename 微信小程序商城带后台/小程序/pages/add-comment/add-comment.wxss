@@ -1,0 +1,59 @@
+/* pages/add-comment/add-comment.wxss */
+
+.comment-cnt {
+  margin: 29rpx 27rpx 0;
+  padding-bottom: 26rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 10rpx;
+}
+
+.comment-ipt {
+  width: 100%;
+  height: 207rpx;
+  padding: 29rpx 34rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.comment-placeholder {
+  color: rgba(29, 29, 38, 0.4);
+}
+
+.preview-cnt {
+  display: flex;
+  margin-top: 29rpx;
+  margin-left: 29rpx;
+}
+
+.preview-image {
+  margin-right: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 5rpx;
+}
+
+.opr-upload {
+  display: block;
+  margin-top: 29rpx;
+  margin-left: 29rpx;
+  width: 43rpx;
+  height: 43rpx;
+}
+
+.comment-btn {
+  margin: 34rpx auto;
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #f5e069;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #34373d;
+}
+
+.comment-btn.dis {
+  color: rgba(52, 55, 61, 0.5);
+}

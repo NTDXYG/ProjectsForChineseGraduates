@@ -1,0 +1,27 @@
+<!--pages/home/home.wxml-->
+<image src="/images/bg.png" class='bg'></image>
+<swiper  indicator-dots='true' class='hot-card'>
+  <swiper-item >
+    <image src="https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/2444819762/O1CN01h4cBCm2Lz2yvG2d7G_!!2444819762-0-pixelsss.jpg_580x580Q90.jpg_.webp"></image>
+  </swiper-item>
+  <swiper-item >
+    <image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/2201228982/O1CN01Kq8QEL2GDo2zigZeR_!!2201228982.jpg_580x580Q90.jpg_.webp"></image>
+  </swiper-item>
+</swiper>
+<view class='separator'>
+  <image src="/images/line-black.png" class='separator-line'></image>
+  <view class='separator-text'>春季推荐</view>
+  <image src="/images/line-black.png" class='separator-line'></image>
+</view>
+<view wx:for='{{productList}}' wx:if='{{ index%2 === 0 }}' wx:key='list' class='list'>
+  <navigator url="/pages/detail/detail?id={{pitem._id}}" wx:for='{{[productList[index],productList[index+1]]}}' wx:key="item" wx:for-index='pindex' wx:for-item='pitem' class='list-item list-item-right'>
+    <image src="{{pitem.image}}" class='list-item-image'></image>
+    <view class='list-item-title'>{{pitem.name}}</view>
+    <view class='list-item-bottom'>
+      <view class='list-item-bottom-icon'>￥</view>
+      <view class='list-item-bottom-price'>{{pitem.price}}</view>
+      <view class='list-item-bottom-icon' data-index="{{pitem._id}}" catchtap='addToTrolley'>+</view>
+    </view>
+  </navigator>
+</view>
+

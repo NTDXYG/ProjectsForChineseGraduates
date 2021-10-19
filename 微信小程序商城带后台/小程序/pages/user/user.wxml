@@ -1,0 +1,32 @@
+<!--pages/user/user.wxml-->
+<image class="bg" src="/images/bg.png"></image>
+
+<view wx:if="{{!userInfo}}">
+  <login bindonLogin="onTapLogin"></login>
+</view>
+
+<view class="user-card" wx:else>
+  <view class="user-info">
+    <image class="user-head" src="{{userInfo.avatarUrl}}"></image>
+    <view class="user-name">{{userInfo.nickName}}</view>
+  </view>
+  <view class="user-split"></view>
+  <view class="user-options">
+    <view class="option" bindtap="onTapAddress">
+      <view class="option-title">我的订单</view>
+      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+    </view>
+        <view class="option" bindtap="onTapSetting">
+      <view class="option-title">系统设置</view>
+      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+    </view>
+    <view class="option" bindtap="onTapService">
+      <view class="option-title">联系客服</view>
+      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+    </view>
+    <view class="option" bindtap="onTapAbout">
+      <view class="option-title">关于毕设</view>
+      <image class="option-arrow" src="/images/grey-arrow.png"></image>
+    </view>
+  </view>
+</view>
